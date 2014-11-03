@@ -1,0 +1,30 @@
+<head>
+  <title>I have to wait for waitOn</title>
+</head>
+
+<body>
+  <div class="container" style="width: 600px; padding: 50px;">
+    <article>
+      {{> Router}}
+    </article>
+  </div>
+</body>
+
+<template name="private">
+  You have to be logged in to see this
+</template>
+
+
+<template name="login">
+    <nav>
+      <li>
+        <a href="/private">You're not logged in. Try to access private content</a>
+      </li>
+    </nav>  
+</template>
+
+<template name="Loading">
+  <h1>
+    Waiting for waitOn to complete...
+  </h1>
+</template>
