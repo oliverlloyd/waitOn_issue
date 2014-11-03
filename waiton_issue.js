@@ -32,13 +32,22 @@ Router.route('/private', {
   }
 });
 
+Posts = new Meteor.Collection('posts');
+
 if (Meteor.isServer) {
   Meteor.publish('post', function () {
     var self = this;
     // send the ready message in a few seconds
-    console.log('We\'ve been asked to publish some documents, we\'re doing so')
+    console.log('We\'ve been asked to publish some documents, we\'re doing so');
+
+    // Insert a doc
+    Posts.insert({'foo': 'bar'})
+
     setTimeout(function () {
       self.ready();
+      // Ideally, we'd restrict this content to logged in users but we might wrongly think we've
+      //  already done this using the onBeforeAction function
+      return Posts.find();
     }, 2000);
   });
 }
